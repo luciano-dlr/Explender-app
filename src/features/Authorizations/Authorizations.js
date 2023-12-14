@@ -4,7 +4,15 @@ import React from 'react'
 const Authorizations = () => {
   return (
     <View>
-      <Text>Proximanete un listado de autorizaciones</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
+      <Text>Authorizations list</Text>
     </View>
   )
 }

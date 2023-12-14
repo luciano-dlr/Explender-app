@@ -24,7 +24,9 @@ const Login = () => {
 
             // Llamada al servicio de autenticación
             console.log('Antes de llamar al servicio de autenticación');
+
             const response = await login(usuarioObject);
+            
             console.log('Después de llamar al servicio de autenticación:', response);
 
 

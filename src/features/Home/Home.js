@@ -43,7 +43,7 @@ const Home = () => {
 
   const handleBackdropPress = () => {
     setMenuVisible(false);
-    // setAuthorizationsVisible(false);
+    
   };
 
   const handlelogout = () => {
@@ -55,13 +55,17 @@ const Home = () => {
     setAuthorizationsVisible(true);
   };
 
+
+
+  
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Soy el Home</Text>
       <TouchableOpacity onPress={toggleMenu}>
         <Text>Soy el Menu</Text>
       </TouchableOpacity>
-      <Modal animationType="none" transparent={true} visible={isMenuVisible}>
+      <Modal animationType="fade" transparent={true} visible={isMenuVisible}>
         <TouchableWithoutFeedback onPress={handleBackdropPress}>
           <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
             <Animated.View style={[menuStyle]}>
@@ -84,6 +88,7 @@ const Home = () => {
       </Modal>
       
       {/*  condicionalmente se muestra */}
+      
       {isAuthorizationsVisible && (
         <Authorizations onClose={() => setAuthorizationsVisible(false)} />
       )}
