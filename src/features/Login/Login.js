@@ -1,68 +1,26 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { isLogged, login } from '../../auth/authService';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { useLoginController } from './useLoginController';
+import {styles} from './styles'
 
 const Login = () => {
 
-    const navigation = useNavigation();
-    const [dni, setDni] = useState('');
-    const [usuario, setUsuario] = useState('');
-    const [contrasena, setContrasena] = useState('');
+    const { handleLogin,dni,usuario,contrasena, setDni,setUsuario,setContrasena } = useLoginController()
 
-
-    const handleLogin = async () => {
-        try {
-            // Crear el objeto usuario con los valores ingresados
-            const usuarioObject = {
-                TipoDoc: 'DNI',
-                NroDoc: dni,
-                Usuario: usuario,
-                Pass: contrasena,
-                CodApp: 0
-            };
-
-            // Llamada al servicio de autenticación
-            console.log('Antes de llamar al servicio de autenticación');
-
-            const response = await login(usuarioObject);
-            
-            console.log('Después de llamar al servicio de autenticación:', response);
-
-
-            // Verificación de éxito en la autenticación
-            console.log('Valor de response.success:', response.success);
-
-            if (response && response.token) {
-                // Autenticación exitosa
-                console.log('Inicio de sesión exitoso');
-                await checkSession();
-                navigation.navigate('Home');
-            } else if (response && response.codigoError === 401) {
-                // Credenciales inválidas
-                alert('Credenciales inválidas. Verifica tus datos.');
-            } else {
-                // Otro tipo de error
-                alert('Error de autenticación. Verifica tus credenciales.');
-            }
-
-        } catch (error) {
-            console.error('Error en el manejo de inicio de sesión:', error);
-        }
-    };
-
-    const checkSession = async () => {
-        try {
-            const logged = await isLogged();
-            console.log('¿Usuario autenticado?', logged);
-        } catch (error) {
-            console.error('Error al verificar el estado de inicio de sesión:', error);
-        }
-    };
+    //To do, mostrar las alertas del back al momento de responder el login
     return (
         <View style={styles.container}>
+            
+            <View>
+                
+            
+            <View style={styles.imgLogoContainer}>
 
-            <Text style={styles.title}>My Country® Autogestión</Text>
+            <Image source={require('../../../assets/eXPlenderLogo.png')}  style={styles.imgLogo} />
+
+            </View>
+
+            
+
             <View style={styles.form}>
                 <TextInput
                     style={styles.input}
@@ -85,9 +43,14 @@ const Login = () => {
                     value={contrasena}
                     onChangeText={(text) => setContrasena(text)}
                 />
+
+            </View>
+            
             </View>
             <TouchableOpacity style={styles.button} onPress={handleLogin}>
+
                 <Text style={styles.buttonText}>Ingresar</Text>
+
             </TouchableOpacity>
         </View>
     );
@@ -95,27 +58,3 @@ const Login = () => {
 
 export default Login;
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        padding: 16,
-
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 16,
-        textAlign: 'center',
-    },
-    form: {
-        marginBottom: 16,
-    },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 12,
-        paddingHorizontal: 10,
-    }
-});

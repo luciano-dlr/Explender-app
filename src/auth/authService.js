@@ -1,10 +1,10 @@
 // authService.js en React Native con expo-secure-store
 import * as SecureStore from 'expo-secure-store';
 
-const API_BASE_URL = 'https://mycountry.net.ar/Api/v1/';
+const API_BASE_URL = 'https://mycountry.net.ar/Api/v1';
 
 export const login = async (usuario) => {
-    try {
+    // try {
         const response = await fetch(`${API_BASE_URL}/Auth`, {
             method: 'POST',
             headers: {
@@ -14,21 +14,19 @@ export const login = async (usuario) => {
         });
 
         const data = await response.json();
+        
 
         if (response.ok) {
             // Autenticación exitosa
             await SecureStore.setItemAsync('authResponse', JSON.stringify(data));
-            console.log('Token almacenado con éxito:', data.token);
-        } else {
-            // Manejar errores de autenticación
-            console.error('Error de autenticación:', data);
+            console.log('Token almacenado con éxito choski', data.token);
         }
-
         return data;
-    } catch (error) {
-        console.error('Error en la solicitud de autenticación:', error);
-        throw error;
-    }
+        //Nunca entra el catch revisar leonardo da vichi
+    // } catch (error) {
+    //     console.error('Error en la solicitud nunca visto', error);
+    //     throw error;
+    // }
 };
 
 export const logout = async () => {
