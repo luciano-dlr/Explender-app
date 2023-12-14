@@ -1,57 +1,63 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image,ActivityIndicator } from 'react-native';
 import { useLoginController } from './useLoginController';
-import {styles} from './styles'
+import { styles } from './styles'
 
 const Login = () => {
 
-    const { handleLogin,dni,usuario,contrasena, setDni,setUsuario,setContrasena } = useLoginController()
+    const { handleLogin, dni, usuario, contrasena, setDni, setUsuario, setContrasena, userStore, isLoading } = useLoginController();
+
 
     //To do, mostrar las alertas del back al momento de responder el login
+    // console.log('User Data in Login component:', userStore.userData);
+
+
     return (
         <View style={styles.container}>
-            
+
             <View>
-                
-            
-            <View style={styles.imgLogoContainer}>
 
-            <Image source={require('../../../assets/eXPlenderLogo.png')}  style={styles.imgLogo} />
+                <View style={styles.imgLogoContainer}>
+
+                    <Image source={require('../../../assets/eXPlenderLogo.png')} style={styles.imgLogo} />
+
+                </View>
+
+                <View style={styles.form}>
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Num. de documento"
+                        keyboardType="numeric"
+                        maxLength={8}
+                        value={dni}
+                        onChangeText={(text) => setDni(text)}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Usuario"
+                        value={usuario}
+                        onChangeText={(text) => setUsuario(text)}
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Contraseña"
+                        secureTextEntry={true}
+                        value={contrasena}
+                        onChangeText={(text) => setContrasena(text)}
+                    />
+
+                </View>
 
             </View>
 
-            
-
-            <View style={styles.form}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Num. de documento"
-                    keyboardType="numeric"
-                    maxLength={8}
-                    value={dni}
-                    onChangeText={(text) => setDni(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Usuario"
-                    value={usuario}
-                    onChangeText={(text) => setUsuario(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Contraseña"
-                    secureTextEntry={true}
-                    value={contrasena}
-                    onChangeText={(text) => setContrasena(text)}
-                />
-
-            </View>
-            
-            </View>
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-
+            <TouchableOpacity style={styles.button} onPress={handleLogin} >
+                {
+                    isLoading && <ActivityIndicator/>
+                }
                 <Text style={styles.buttonText}>Ingresar</Text>
 
             </TouchableOpacity>
+
         </View>
     );
 };

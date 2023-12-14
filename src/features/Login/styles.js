@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { getHP, getWP } from "../../utils/dimensions";
+import { getHP } from "../../utils/dimensions";
 
 export const styles = StyleSheet.create({
     container: {
@@ -29,8 +29,12 @@ export const styles = StyleSheet.create({
         
     },
     button:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        gap:10,
         paddingHorizontal:20,
-        paddingVertical:10,
+        paddingVertical: 10,
         borderRadius:7,
         width:'100%',
         backgroundColor:'#880e4f',

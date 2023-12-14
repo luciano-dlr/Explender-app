@@ -1,7 +1,13 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import { useState } from 'react';
+import { userStoreZustand } from '../../zustand/useAuthStore';
+import { TextInput } from 'react-native-gesture-handler';
 
 const Authorizations = () => {
+
+  console.log(userStoreZustand)
+
+ 
   return (
     <View>
       <Text>Authorizations list</Text>
@@ -11,8 +17,9 @@ const Authorizations = () => {
       <Text>Authorizations list</Text>
       <Text>Authorizations list</Text>
       <Text>Authorizations list</Text>
+      
       <Text>Authorizations list</Text>
-      <Text>Authorizations list</Text>
+      
     </View>
   )
 }
