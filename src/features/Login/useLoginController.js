@@ -1,21 +1,12 @@
-import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../zustand/useAuthStore';
 import usePostLogIn from '../../hooks/auth/usePostLogIn';
 
-
-
 export const useLoginController = () => {
 
-    const navigation = useNavigation();
     const authStore = useAuthStore();
 
-    console.log('zustand',authStore.userData)
-
-
     const { data, error, isLoading, post } = usePostLogIn();
-
-
 
     const [dni, setDni] = useState('');
     const [usuario, setUsuario] = useState('');
@@ -39,8 +30,6 @@ export const useLoginController = () => {
         authStore.setUserData(data)
     }, [data])
 
-    console.log('soy userData',authStore.userData)
-
     return {
         handleLogin,
         dni,
@@ -49,7 +38,6 @@ export const useLoginController = () => {
         setDni,
         setUsuario,
         setContrasena,
-        data,
         isLoading
     }
 

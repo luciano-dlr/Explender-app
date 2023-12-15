@@ -4,13 +4,9 @@ import { styles } from './styles'
 
 const Login = () => {
 
-    const { handleLogin, dni, usuario, contrasena, setDni, setUsuario, setContrasena, userStore, isLoading } = useLoginController();
-
+    const { handleLogin, dni, usuario, contrasena, setDni, setUsuario, setContrasena, isLoading } = useLoginController();
 
     //To do, mostrar las alertas del back al momento de responder el login
-    // console.log('User Data in Login component:', userStore.userData);
-
-
     return (
         <View style={styles.container}>
 
