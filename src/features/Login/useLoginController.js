@@ -26,9 +26,10 @@ export const useLoginController = () => {
 
     };
 
-    useEffect(() => {
-        authStore.setUserData(data)
-    }, [data])
+    // useEffect(() => {
+    //     authStore.setUserData(data)
+    //     console.log(data)
+    // }, [data])
 
     return {
         handleLogin,
