@@ -1,22 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useUserDataGet from "../../hooks/user/useUserDataGet";
+import { useUserStore } from "../../zustand/useUserStore";
+import { useAuthStore } from "../../zustand/useAuthStore";
 
 
 export const useAuthorizationsController = () => {
 
     const [authorizationsData, setAuthorizationsData] = useState([]);
 
+    const authStore = useAuthStore();
+    const userData = authStore.userData;
 
+    // console.log('soy user data', userData && userData.token);
+
+       
       
 
       const {get} = useUserDataGet()
 
       const handleUserInfo = () => {
-        const token = "OId+4W1pNdohNngNV37g3QCK/pSkg1HNJHEiGVpSNaBTp76AGVCSWHTzLzYJzwh3J7fsSBOuRuONlyqyyApLZQOyFhekth5J9meo4Rx+TGyf6kxAucqWdN4VDMnSKAqVCs2AMndgm/CU12CIOkZJ6/kJk7r/NqWQpv7UCThAh9MjRUocZS+iRhHEKrI4pDfY06wNQvmrEDJwrO0bNXLwGbqY95Deeyv77MXLORffEg7AuIi5vgmB59ZpLUoWCzISszZBE0TIXrJj8gAT91qvQqUIbHiJPEFKcLJZgCU+7MWXb11gSAJl0VX42MVuzZ2HeSGWkGyaAh3p8w/Fuvfe5KDqqbNygUXfa7ArB6cpxUuBgi9jUDVd7OHVxiAtVg4+cljo1j9xNXMsqdkhIASMEKfFa6TswL/OGCt1mc5gDJeDI6VZrIxZrNvooKCh4mtTqvGq/FsQjLs=";
-        console.log('Calling handleUserInfo with token:', token);
+        const token = 'OId+4W1pNdohNngNV37g3QCK/pSkg1HNJHEiGVpSNaBTp76AGVCSWHTzLzYJzwh3J7fsSBOuRuONlyqyyApLZQOyFhekth5J9meo4Rx+TGyf6kxAucqWdN4VDMnSKAqVCs2AMndgm/CU12CIOkZJ6/kJk7r/NqWQpv7UCThAh9MjRUocZS+iRhHEKrI4pDfY06wNQvmrEDJwrO0bNXLwGbqY95Deeyv77MXLORffEg7AuIi5vgmB59ZpLUoWCzISszZBE0TIXrJj8gAT91qvQqUIbHiJPEFKcLJZgCU+7MWXb11gSAJl0VX42MVuzZ2HeSGWkGyaAh3p8w/Fuvfe5KDqqbNygUXfa7ArB6cpxUuBgi9jUDVd7OHVxiAtVg4+cljo1j9xNXMsqdkhIASMEKfFa6TswL/OGCt1mc5gDJeDI6VZrIxZrNvooKCh4mtTqvGq/FsQjLs=';
+        console.log('handle userInfo con token', token);
         get(token);
-        
       };
+      
+
+     
 
       //objeto a enviar para tener listado de auth
       // Usuario test
@@ -340,7 +349,8 @@ export const useAuthorizationsController = () => {
     authorizationsData,
     setAuthorizationsData,
     get,
-    handleUserInfo
+    handleUserInfo,
+    
     
   }
 }

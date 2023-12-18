@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../zustand/useAuthStore';
 import usePostLogIn from '../../hooks/auth/usePostLogIn';
+import { useUserStore } from '../../zustand/useUserStore';
+import { useAuthorizationsController } from '../Authorizations/useAuthorizationsController';
 
 export const useLoginController = () => {
 
     const authStore = useAuthStore();
+    // const userStore = useUserStore()
+
+    const { handleUserInfo } = useAuthorizationsController(); 
 
     const { data, error, isLoading, post } = usePostLogIn();
 
@@ -26,10 +31,24 @@ export const useLoginController = () => {
 
     };
 
+    useEffect(() => {
+        authStore.setUserData(data)
+        console.log(data)
+
+        //aqui necesito elanzar leio
+        // handleUserInfo();
+        if (data) {
+            handleUserInfo();
+        }
+        
+    }, [data])
+    
     // useEffect(() => {
-    //     authStore.setUserData(data)
-    //     console.log(data)
-    // }, [data])
+    //     //si existe data funca handle
+    //     if (data) {
+    //         handleUserInfo();
+    //     }
+    // }, [data]);
 
     return {
         handleLogin,

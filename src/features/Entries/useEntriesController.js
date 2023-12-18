@@ -21,13 +21,10 @@ export const useEntriesController = () => {
       }
     };
   
-    
     const closeModal = () => {
       setModalVisible(false);
     };
   
-
-
   return {
     sound,
     isModalVisible,

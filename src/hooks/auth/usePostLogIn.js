@@ -17,8 +17,11 @@ const usePostLogIn = () => {
         try {
             setIsLoading(true)
             const response = await authService.postLogin(usuario);
-            // setData(response)
-            authStore.setUserData(response)
+
+            setData(response)
+
+            
+            // authStore.setUserData(response)
 
         } catch (error) {
             setError(error)

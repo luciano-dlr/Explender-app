@@ -19,6 +19,4 @@ export const styles = StyleSheet.create({
         color:'#fff',
         textAlign:"justify",
       }
-
-
 });
