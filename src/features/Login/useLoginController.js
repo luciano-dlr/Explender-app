@@ -9,7 +9,7 @@ export const useLoginController = () => {
     const authStore = useAuthStore();
     // const userStore = useUserStore()
 
-    const { handleUserInfo } = useAuthorizationsController(); 
+    
 
     const { data, error, isLoading, post } = usePostLogIn();
 
@@ -17,6 +17,7 @@ export const useLoginController = () => {
     const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
 
+    
     const handleLogin = () => {
 
         const usuarioObject = {
@@ -32,13 +33,12 @@ export const useLoginController = () => {
     };
 
     useEffect(() => {
-        authStore.setUserData(data)
-        console.log(data)
-
-        //aqui necesito elanzar leio
-        // handleUserInfo();
+        
+        
+        
         if (data) {
-            handleUserInfo();
+            authStore.setUserData(data)
+           
         }
         
     }, [data])

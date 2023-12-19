@@ -9,6 +9,8 @@ const AppNavigation = () => {
   const Stack = createNativeStackNavigator();
   const { userData } = useAuthStore()
 
+  
+
   return (
 
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>

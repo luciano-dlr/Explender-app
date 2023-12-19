@@ -4,13 +4,19 @@ import { styles } from './styles';
 import { useUserStore } from '../../zustand/useUserStore';
 
 const Authorizations = () => {
-  const { authorizationsSimulate, handleUserInfo } = useAuthorizationsController();
-  const userStore = useUserStore();
-  const userInfo = userStore.userInfo;
+  const { handleUserInfo,userInfo,handleAuthorizationsList,userAuthorizationsList } = useAuthorizationsController();
+
+
+  
+
+
+  //ahora con el token leio hacer el flujo de consulta para el listado de auths
+
 
   return (
     <View style={styles.container}>
-      {authorizationsSimulate.AUTORIZACIONES.map((authorization, index) => (
+    
+      {userAuthorizationsList?.AUTORIZACIONES.map((authorization, index) => (
         <TouchableOpacity key={index} style={styles.authorizationItem}>
           <View>
             {userInfo && userInfo.USUARIO && userInfo.USUARIO[0].NOMBRE ? (

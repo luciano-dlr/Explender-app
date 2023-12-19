@@ -4,8 +4,7 @@ import { useAuthStore } from "../../zustand/useAuthStore";
 import { useState } from "react"
 
 const usePostLogIn = () => {
-    const authStore = useAuthStore();
-
+    
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -19,9 +18,6 @@ const usePostLogIn = () => {
             const response = await authService.postLogin(usuario);
 
             setData(response)
-
-            
-            // authStore.setUserData(response)
 
         } catch (error) {
             setError(error)
