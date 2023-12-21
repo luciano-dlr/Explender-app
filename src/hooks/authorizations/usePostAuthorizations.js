@@ -1,8 +1,5 @@
-
-
 import { useState } from "react"
 import AuthorizationsService from "../../services/authorizations/authorizations.service"
-
 
 const usePostAuthorizations = () => {
 
@@ -15,19 +12,12 @@ const usePostAuthorizations = () => {
     const post = async (data, token) => {
 
         try {
-
             setIsLoading(true)
-
             const response = await authorizationsService.postAuthorization(data, token);
-            
-
             setDataAuthorizations(response)
-
-            console.log('Respuesta de server leyo', response);
-
     
-        } catch (error) {
-            setError(error)
+        } catch (err) {
+            setError(error);
         }
         finally {
             setIsLoading(false)
