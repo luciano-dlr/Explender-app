@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from '../features/Login/Login.js';
+import LoginScreen from '../features/Login/LoginScreen.js';
 import DrawerNavigation from './DrawerNavigation.js';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuthStore } from '../zustand/useAuthStore.js';
+import AuthorizationScreen from '../features/Authorization/AuthorizationScreen.js';
 
 const AppNavigation = () => {
   
@@ -15,13 +16,19 @@ const AppNavigation = () => {
 
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 
-      <Stack.Navigator screenOptions={{ gestureEnabled: false, headerShown: false }} >
+      <Stack.Navigator screenOptions={{ gestureEnabled: false}} >
         {
           userData ?
-            <Stack.Screen name="Home" component={DrawerNavigation} />
+          <>
+            <Stack.Screen name="Home" component={DrawerNavigation} options={{headerShown: false}} />
+            <Stack.Screen name="Authorization" component={AuthorizationScreen} options={({route}) => ({title:route.params.name})} />
+
+          </>
             :
-            <Stack.Screen name="Login" component={Login} />
-        }
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
+
+          }
+
 
       </Stack.Navigator>
 

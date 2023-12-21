@@ -12,6 +12,7 @@ const usePostAuthorizations = () => {
     const post = async (data, token) => {
 
         try {
+            
             setIsLoading(true)
             const response = await authorizationsService.postAuthorization(data, token);
             setDataAuthorizations(response)

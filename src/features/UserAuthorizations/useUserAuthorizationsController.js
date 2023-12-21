@@ -4,6 +4,7 @@ import { useUserStore } from "../../zustand/useUserStore";
 import { useAuthStore } from "../../zustand/useAuthStore";
 import usePostAuthorizations from "../../hooks/authorizations/usePostAuthorizations";
 import { useAuthorizationsStore } from "../../zustand/useAuthorizationsStore";
+import { useNavigation } from "@react-navigation/native";
 
 export const useAuthorizationsController = () => {
 
@@ -12,39 +13,24 @@ export const useAuthorizationsController = () => {
     const userInfo = useUserStore((bolsa) => bolsa.userInfo);
 
     const { userAuthorizationsList, setUserAuthorizationsList } = useAuthorizationsStore();
-
     const { get, data } = useGetUserData()
+    const { post, dataAuthorizations } = usePostAuthorizations()
+    const { navigate } = useNavigation();
 
+    // const handlePressAuthorization = (nameAuthorized,contentAuthorized) => {
+
+    //   navigate('Authorization',{name:nameAuthorized,content:contentAuthorized});
+
+    // };
+
+    const handlePressAuthorization = (nameAuthorized,authorization) => {
+        navigate('Authorization', { name: nameAuthorized, authorization });
+      };
+  
     const handleUserInfo = () => {
 
         get(token);
     };
-
-    useEffect(() => {
-
-        handleUserInfo()
-
-    }, [])
-
-
-    useEffect(() => {
-
-        if (data) {
-            setUserInfo(data)
-        }
-
-    }, [data])
-
-    useEffect(() => {
-
-        if (userInfo) {
-            handleAuthorizationsList()
-        }
-
-    }, [userInfo])
-
-    //To Do 
-    //Ojo leio la fecha es muy importante en la app
 
     const makeDate = () => {
         const date = new Date();
@@ -63,8 +49,6 @@ export const useAuthorizationsController = () => {
         return dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
     }
 
-    const { post, dataAuthorizations } = usePostAuthorizations()
-
     const handleAuthorizationsList = async () => {
         const date = makeDate();
         const data = {
@@ -77,6 +61,28 @@ export const useAuthorizationsController = () => {
         post(data, token);
     };
 
+    
+    useEffect(() => {
+
+        handleUserInfo()
+
+    }, [])
+
+    useEffect(() => {
+
+        if (data) {
+            setUserInfo(data)
+        }
+
+    }, [data])
+
+    useEffect(() => {
+
+        if (userInfo) {
+            handleAuthorizationsList()
+        }
+
+    }, [userInfo])
 
     useEffect(() => {
 
@@ -87,13 +93,13 @@ export const useAuthorizationsController = () => {
 
     }, [dataAuthorizations])
 
-
     return {
         get,
         handleUserInfo,
         userInfo,
         handleAuthorizationsList,
-        userAuthorizationsList
+        userAuthorizationsList,
+        handlePressAuthorization
     }
 }
 

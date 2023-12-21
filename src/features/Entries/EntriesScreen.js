@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import { useEntriesController } from './useEntriesController';
-import { styles } from '../Entries/styles';
+import { styles } from './styles';
 
-const Entries = () => {
+const EntriesScreen = () => {
 
   const {isModalVisible,playSound,closeModal } = useEntriesController()
 
@@ -44,4 +44,4 @@ const Entries = () => {
 
 
 
-export default Entries;
+export default EntriesScreen;

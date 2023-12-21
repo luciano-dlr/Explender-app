@@ -1,17 +1,25 @@
 import { View, Text, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
-import { useAuthorizationsController } from './useAuthorizationsController';
+import { useAuthorizationsController } from './useUserAuthorizationsController';
 import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 
-const Authorizations = () => {
-  const { userInfo,userAuthorizationsList } = useAuthorizationsController();
+const UserAuthorizationsScreen = () => {
 
+  const { userInfo, userAuthorizationsList, handlePressAuthorization } = useAuthorizationsController();
 
   return (
+
     <ScrollView style={styles.container}>
-      
+
       {!userAuthorizationsList ? <ActivityIndicator /> : userAuthorizationsList?.AUTORIZACIONES.map((authorization, index) => (
-        <TouchableOpacity key={index} style={styles.authorizationItem}>
+
+
+        <TouchableOpacity
+          key={index}
+          style={styles.authorizationItem}
+          onPress={() => handlePressAuthorization(authorization.DESCRIPCION, authorization)}
+        >
           <View>
             {userInfo && userInfo.USUARIO && userInfo.USUARIO[0].NOMBRE ? (
               <>
@@ -23,8 +31,11 @@ const Authorizations = () => {
                 <Text style={styles.authorizationText}>{authorization.AUTORIZACIONTIPO}</Text>
                 <Text style={styles.authorizationText}>{authorization.GRUPO}</Text>
               </>
+
             ) : (
+
               <ActivityIndicator size="small" color="#0000ff" />
+
             )}
           </View>
         </TouchableOpacity>
@@ -33,5 +44,5 @@ const Authorizations = () => {
   );
 };
 
-export default Authorizations;
+export default UserAuthorizationsScreen;
 

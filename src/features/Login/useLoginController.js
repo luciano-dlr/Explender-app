@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../zustand/useAuthStore';
 import usePostLogIn from '../../hooks/auth/usePostLogIn';
 import { useUserStore } from '../../zustand/useUserStore';
-import { useAuthorizationsController } from '../Authorizations/useAuthorizationsController';
+import { useAuthorizationsController } from '../UserAuthorizations/useUserAuthorizationsController';
 
 export const useLoginController = () => {
 

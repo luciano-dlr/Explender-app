@@ -1,10 +1,11 @@
 import {createDrawerNavigator,DrawerContentScrollView,DrawerItemList,DrawerItem} from '@react-navigation/drawer';
 import { useAuthStore } from '../zustand/useAuthStore';
-import Entries from '../features/Entries/Entries';
-import Authorizations from '../features/Authorizations/Authorizations'
+import EntriesScreen from '../features/Entries/EntriesScreen';
+import UserAuthorizationsScreen from '../features/UserAuthorizations/UserAuthorizationsScreen'
 import { useUserStore } from '../zustand/useUserStore';
 import { Text, ActivityIndicator } from 'react-native';
 import { getHP } from '../utils/dimensions';
+
 
 function CustomDrawerContent(props) {
 
@@ -12,17 +13,8 @@ function CustomDrawerContent(props) {
     const {userInfo} = useUserStore()
 
     
-
-
-    // console.log(JSON.stringify(userInfo.USUARIO[0].PERSONA,null,4))
-
-
-
-    
     return (
       <DrawerContentScrollView {...props}>
-
-        {/* <DrawerItem label={userInfo.USUARIO[0].PERSONA.NOMBRE} /> */}
 
         {
           !userInfo ? 
@@ -39,8 +31,6 @@ function CustomDrawerContent(props) {
 
         <DrawerItem label="Cerrar Session" onPress={() => setUserData(null) } />
 
-
-
       </DrawerContentScrollView>
     );
   }
@@ -53,9 +43,9 @@ function CustomDrawerContent(props) {
       
       <Drawer.Navigator initialRouteName="Authorizations" drawerContent={props => <CustomDrawerContent {...props} />}>
 
-          <Drawer.Screen name="Autorizaciones" component={Authorizations} />
-            
-          <Drawer.Screen name="Movimientos" component={Entries}/>
+          <Drawer.Screen name="Autorizaciones" component={UserAuthorizationsScreen} />
+
+          <Drawer.Screen name="Movimientos" component={EntriesScreen}/>
 
       </Drawer.Navigator>
 

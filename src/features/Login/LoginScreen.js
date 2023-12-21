@@ -2,7 +2,7 @@ import { View, Text, TextInput, TouchableOpacity, Image,ActivityIndicator } from
 import { useLoginController } from './useLoginController';
 import { styles } from './styles'
 
-const Login = () => {
+const LoginScreen = () => {
 
     const { handleLogin, dni, usuario, contrasena, setDni, setUsuario, setContrasena, isLoading } = useLoginController();
 
@@ -58,5 +58,5 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginScreen;
 

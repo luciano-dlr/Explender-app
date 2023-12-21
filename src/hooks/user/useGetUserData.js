@@ -13,20 +13,18 @@ const useGetUserData = () => {
   const get = async (token) => {
 
     try {
-      setIsLoading(true);
 
+      setIsLoading(true);
       const response = await userInfoService.getUserInfo(token);
-      
       setData(response)
      
     } catch (error) {
-
+      
       setError(error);
 
     } finally {
-
       setIsLoading(false);
-      
+     
     }
   };
 
