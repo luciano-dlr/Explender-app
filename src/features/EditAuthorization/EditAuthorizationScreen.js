@@ -1,19 +1,22 @@
-import { View, Text,TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './styles';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import { useEditAuthorizationController } from './useEditAuthorizationController';
 
 const EditAuthorizationScreen = () => {
 
 
-    const route = useRoute();
-    const { authorization } = route.params;
+  const route = useRoute();
+  const { authorization } = route.params;
 
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const { handleEditAuthorization } = useEditAuthorizationController();
+
 
   return (
     
@@ -25,7 +28,10 @@ const EditAuthorizationScreen = () => {
 
         <View style={styles.body}>
           <View style={styles.row}>
+            <TouchableOpacity onPress={handleEditAuthorization}>
             <Text style={styles.label}>Tipo de autorización: </Text>
+              
+            </TouchableOpacity>
             <Text style={styles.value}>{authorization.AUTORIZACIONTIPO}</Text>
           </View>
 
@@ -59,10 +65,7 @@ const EditAuthorizationScreen = () => {
         ))}
       </View>
     </View>
-   
   </ScrollView>
-      
-    
   )
 }
 

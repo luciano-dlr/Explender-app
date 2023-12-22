@@ -5,6 +5,12 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { useAuthorizationsController } from './useAuthorizationsController';
 import { useEffect, useState } from 'react';
+import PencilIcon from '../../../assets/PencilIcon.svg'
+
+
+
+
+
 
 const AuthorizationScreen = () => {
 
@@ -54,8 +60,8 @@ const AuthorizationScreen = () => {
         </View>
       </View>
       <View style={styles.floatingButtonContainer}>
-        <TouchableOpacity onPress={() => handlePressEditAuthorization(authorization)}>
-          <Image style={styles.iconoEdit} source={require('../../../assets/iconoEdit.png')} />
+        <TouchableOpacity onPress={() => handlePressEditAuthorization(authorization)} >
+         <PencilIcon color={'black'}/>
         </TouchableOpacity>
       </View>
     </ScrollView>
