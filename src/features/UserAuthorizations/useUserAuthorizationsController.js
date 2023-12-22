@@ -6,11 +6,13 @@ import usePostAuthorizations from "../../hooks/authorizations/usePostAuthorizati
 import { useAuthorizationsStore } from "../../zustand/useAuthorizationsStore";
 import { useNavigation } from "@react-navigation/native";
 
-export const useAuthorizationsController = () => {
+export const useUserAuthorizationsController = () => {
 
     const token = useAuthStore((bolsa) => bolsa.userData?.token);
     const setUserInfo = useUserStore((bolsa) => bolsa.setUserInfo);
     const userInfo = useUserStore((bolsa) => bolsa.userInfo);
+
+    // console.log(JSON.stringify(userInfo,null,4))
 
     const { userAuthorizationsList, setUserAuthorizationsList } = useAuthorizationsStore();
     const { get, data } = useGetUserData()
@@ -23,10 +25,10 @@ export const useAuthorizationsController = () => {
 
     // };
 
-    const handlePressAuthorization = (nameAuthorized,authorization) => {
+    const handlePressAuthorization = (nameAuthorized, authorization) => {
         navigate('Authorization', { name: nameAuthorized, authorization });
-      };
-  
+    };
+
     const handleUserInfo = () => {
 
         get(token);
@@ -49,6 +51,9 @@ export const useAuthorizationsController = () => {
         return dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
     }
 
+    // console.log('soy yo',userInfo.USUARIO[0].PERSONA.CODIGO)
+    // console.log('soy yo',token)
+
     const handleAuthorizationsList = async () => {
         const date = makeDate();
         const data = {
@@ -61,7 +66,7 @@ export const useAuthorizationsController = () => {
         post(data, token);
     };
 
-    
+
     useEffect(() => {
 
         handleUserInfo()
@@ -102,4 +107,3 @@ export const useAuthorizationsController = () => {
         handlePressAuthorization
     }
 }
-

@@ -5,12 +5,22 @@ import UserAuthorizationsScreen from '../features/UserAuthorizations/UserAuthori
 import { useUserStore } from '../zustand/useUserStore';
 import { Text, ActivityIndicator } from 'react-native';
 import { getHP } from '../utils/dimensions';
+import { useAuthorizationsStore } from '../zustand/useAuthorizationsStore';
 
 
 function CustomDrawerContent(props) {
 
     const {setUserData} = useAuthStore()
-    const {userInfo} = useUserStore()
+    const {userInfo,setUserInfo} = useUserStore()
+    const {setUserAuthorizationsList} = useAuthorizationsStore()
+
+    
+
+    const handleLogOut = () => {
+      setUserAuthorizationsList(null)
+      setUserData(null)
+      setUserInfo(null)
+    }
 
     
     return (
@@ -29,7 +39,7 @@ function CustomDrawerContent(props) {
         
         <DrawerItemList {...props} />
 
-        <DrawerItem label="Cerrar Session" onPress={() => setUserData(null) } />
+        <DrawerItem label="Cerrar Session" onPress={handleLogOut} />
 
       </DrawerContentScrollView>
     );
