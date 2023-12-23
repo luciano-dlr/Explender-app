@@ -4,7 +4,7 @@ import { styles } from './styles';
 
 const EntriesScreen = () => {
 
-  const {isModalVisible,playSound,closeModal } = useEntriesController()
+  const { isModalVisible, playSound, closeModal } = useEntriesController()
 
   return (
     <View style={styles.container}>
@@ -41,7 +41,5 @@ const EntriesScreen = () => {
     </View>
   );
 };
-
-
 
 export default EntriesScreen;

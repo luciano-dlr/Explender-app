@@ -1,6 +1,6 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 
 export const useAuthorizationsStore = create((set) => ({
-  userAuthorizationsList: null, 
+  userAuthorizationsList: null,
   setUserAuthorizationsList: (data) => set({ userAuthorizationsList: data }),
 }));

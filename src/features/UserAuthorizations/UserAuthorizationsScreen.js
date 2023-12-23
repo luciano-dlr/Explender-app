@@ -3,20 +3,17 @@ import { useUserAuthorizationsController } from './useUserAuthorizationsControll
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
-
 const UserAuthorizationsScreen = () => {
 
   const { userInfo, userAuthorizationsList, handlePressAuthorization } = useUserAuthorizationsController();
-  
+
   // console.log(JSON.stringify(userAuthorizationsList,null,4))
+
   return (
 
     <ScrollView style={styles.container}>
 
       {!userAuthorizationsList ? <ActivityIndicator /> : userAuthorizationsList?.AUTORIZACIONES.map((authorization, index) => (
-
-
-
 
         <TouchableOpacity
           key={index}
@@ -32,14 +29,17 @@ const UserAuthorizationsScreen = () => {
                 <Text style={styles.authorizationText}>{authorization.GRUPO}</Text>
                 <Text style={styles.authorizationText}>{authorization.AUTORIZACIONTIPO}</Text>
 
-                {authorization.AUTORIZACIONTIPO !== 'Permanente' ? 
+                {authorization.AUTORIZACIONTIPO !== 'Permanente' ?
+
                   <>
-                  <Text style={styles.authorizationText}>Desde: {authorization.AUTORIZADODESDE}</Text>
-                  <Text style={styles.authorizationText}>Hasta: {authorization.AUTORIZADOHASTA}</Text>
+                    <Text style={styles.authorizationText}>Desde: {authorization.AUTORIZADODESDE}</Text>
+                    <Text style={styles.authorizationText}>Hasta: {authorization.AUTORIZADOHASTA}</Text>
                   </>
 
                   :
+
                   <></>
+
                 }
               </>
 
@@ -56,4 +56,3 @@ const UserAuthorizationsScreen = () => {
 };
 
 export default UserAuthorizationsScreen;
-

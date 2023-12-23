@@ -1,10 +1,9 @@
 
 import AuthService from "../../services/auth/auth.service"
-import { useAuthStore } from "../../zustand/useAuthStore";
 import { useState } from "react"
 
 const usePostLogIn = () => {
-    
+
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -14,7 +13,7 @@ const usePostLogIn = () => {
     const post = async (usuario) => {
 
         try {
-            
+
             setIsLoading(true)
             const response = await authService.postLogin(usuario);
             setData(response)

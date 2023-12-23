@@ -2,14 +2,9 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '../../zustand/useAuthStore';
 import usePostLogIn from '../../hooks/auth/usePostLogIn';
 
-
-
 export const useLoginController = () => {
 
     const authStore = useAuthStore();
-    // const userStore = useUserStore()
-
-    
 
     const { data, error, isLoading, post } = usePostLogIn();
 
@@ -17,7 +12,6 @@ export const useLoginController = () => {
     const [usuario, setUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
 
-    
     const handleLogin = () => {
 
         const usuarioObject = {
@@ -33,16 +27,12 @@ export const useLoginController = () => {
     };
 
     useEffect(() => {
-        
-        
-        
+
         if (data) {
             authStore.setUserData(data)
-           
         }
-        
+
     }, [data])
-    
 
     return {
         handleLogin,

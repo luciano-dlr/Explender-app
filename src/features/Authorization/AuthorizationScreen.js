@@ -2,31 +2,26 @@ import { useRoute } from '@react-navigation/native';
 import { View, Text, FloatingActionButton, TouchableOpacity, Image } from 'react-native'
 import { styles } from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
-
 import { useAuthorizationsController } from './useAuthorizationsController';
-import { useEffect, useState } from 'react';
 import PencilIcon from '../../../assets/PencilIcon.svg'
-
-
-
-
-
 
 const AuthorizationScreen = () => {
 
-  const { handlePressEditAuthorization,sortedDias } = useAuthorizationsController();
-
+  const { handlePressEditAuthorization, sortedDias } = useAuthorizationsController();
 
   const route = useRoute();
   const { authorization } = route.params;
 
   // console.log(JSON.stringify(authorization,null,4))
 
-
+  //TO DO
+  //restyle component 
   return (
 
     <ScrollView style={styles.scrollView}>
+
       <View style={styles.container}>
+
         <View style={styles.header}>
           <View style={styles.body}>
             <View style={styles.row}>
@@ -58,11 +53,11 @@ const AuthorizationScreen = () => {
             </View>
           ))}
         </View>
-      </View>
-      <View style={styles.floatingButtonContainer}>
-        <TouchableOpacity onPress={() => handlePressEditAuthorization(authorization)} >
-         <PencilIcon color={'black'}/>
-        </TouchableOpacity>
+        <View style={styles.floatingButtonContainer}>
+          <TouchableOpacity onPress={() => handlePressEditAuthorization(authorization)} style={styles.floatingButton}>
+            <PencilIcon color={'black'} />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );

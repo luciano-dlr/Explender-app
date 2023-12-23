@@ -7,31 +7,30 @@ import AuthorizationScreen from '../features/Authorization/AuthorizationScreen.j
 import EditAuthorizationScreen from '../features/EditAuthorization/EditAuthorizationScreen.js';
 
 const AppNavigation = () => {
-  
+
   const Stack = createNativeStackNavigator();
   const { userData } = useAuthStore()
-
-  
 
   return (
 
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
 
-      <Stack.Navigator screenOptions={{ gestureEnabled: false}} >
+      <Stack.Navigator screenOptions={{ gestureEnabled: false }} >
+
         {
           userData ?
-          <>
-            <Stack.Screen name="Home" component={DrawerNavigation} options={{headerShown: false}} />
-            <Stack.Screen name="Authorization" component={AuthorizationScreen} options={({route}) => ({title:route.params.name})} />
-            <Stack.Screen name="Editar Autorizacion" component={EditAuthorizationScreen}  />
+            <>
+              <Stack.Screen name="Home" component={DrawerNavigation} options={{ headerShown: false }} />
+              <Stack.Screen name="Authorization" component={AuthorizationScreen} options={({ route }) => ({ title: route.params.name })} />
+              <Stack.Screen name="Editar Autorizacion" component={EditAuthorizationScreen} />
 
+            </>
 
-          </>
             :
-            <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
 
-          }
+            <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
 
+        }
 
       </Stack.Navigator>
 

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { getHP } from '../utils/dimensions';
 
-
+//No tiene uso este layout
 const PrivateLayout = ({ title, children }) => {
 
     const { goBack } = useNavigation();
@@ -13,15 +13,17 @@ const PrivateLayout = ({ title, children }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            
+
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: getHP(2), backgroundColor: 'lightblue' }}>
 
                 <TouchableOpacity onPress={goBack}>
+
                     <Text> {flecha}  </Text>
+
                 </TouchableOpacity>
 
                 <Text>{title}</Text>
-                
+
             </View>
 
             {/* Contenido del componente leio */}

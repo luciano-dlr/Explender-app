@@ -12,18 +12,12 @@ export const useUserAuthorizationsController = () => {
     const setUserInfo = useUserStore((bolsa) => bolsa.setUserInfo);
     const userInfo = useUserStore((bolsa) => bolsa.userInfo);
 
-    // console.log(JSON.stringify(userInfo,null,4))
-
     const { userAuthorizationsList, setUserAuthorizationsList } = useAuthorizationsStore();
     const { get, data } = useGetUserData()
     const { post, dataAuthorizations } = usePostAuthorizations()
     const { navigate } = useNavigation();
 
-    // const handlePressAuthorization = (nameAuthorized,contentAuthorized) => {
-
-    //   navigate('Authorization',{name:nameAuthorized,content:contentAuthorized});
-
-    // };
+    // console.log(JSON.stringify(userInfo,null,4))
 
     const handlePressAuthorization = (nameAuthorized, authorization) => {
         navigate('Authorization', { name: nameAuthorized, authorization });
@@ -32,6 +26,7 @@ export const useUserAuthorizationsController = () => {
     const handleUserInfo = () => {
 
         get(token);
+
     };
 
     const makeDate = () => {
@@ -50,9 +45,6 @@ export const useUserAuthorizationsController = () => {
         const dateParts = parsedDate.split('-');
         return dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
     }
-
-    // console.log('soy yo',userInfo.USUARIO[0].PERSONA.CODIGO)
-    // console.log('soy yo',token)
 
     const handleAuthorizationsList = async () => {
         const date = makeDate();

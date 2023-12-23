@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image,ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useLoginController } from './useLoginController';
 import { styles } from './styles'
 
@@ -48,7 +48,7 @@ const LoginScreen = () => {
 
             <TouchableOpacity style={styles.button} onPress={handleLogin} >
                 {
-                    isLoading && <ActivityIndicator/>
+                    isLoading && <ActivityIndicator />
                 }
                 <Text style={styles.buttonText}>Ingresar</Text>
 
