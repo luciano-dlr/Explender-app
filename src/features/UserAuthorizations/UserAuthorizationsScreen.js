@@ -28,6 +28,7 @@ const UserAuthorizationsScreen = () => {
                 <Text style={styles.authorizationText}>{authorization.DESCRIPCION}</Text>
                 <Text style={styles.authorizationText}>{authorization.GRUPO}</Text>
                 <Text style={styles.authorizationText}>{authorization.AUTORIZACIONTIPO}</Text>
+                {/* <Text style={styles.authorizationText}>{authorization.GRUPODESCRIP}</Text> */}
 
                 {authorization.AUTORIZACIONTIPO !== 'Permanente' ?
 

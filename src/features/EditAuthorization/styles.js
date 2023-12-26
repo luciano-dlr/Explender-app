@@ -70,5 +70,15 @@ export const styles = StyleSheet.create({
   iconoEdit: {
     width: getWP(10),
     height: getHP(5),
-  }
+  },
+  button: {
+    backgroundColor: '#3498db', // Adjust the color as needed
+    padding: 10,
+    marginVertical: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff', // Text color for the button
+    textAlign: 'center',
+  },
 });
