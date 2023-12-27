@@ -8,6 +8,7 @@ import { getHP, getWP } from '../utils/dimensions';
 import { useAuthorizationsStore } from '../zustand/useAuthorizationsStore';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AddAuthorization from '../../assets/AddAuthorization.svg'
+import { useNavigation } from '@react-navigation/native';
 
 function CustomDrawerContent(props) {
 
@@ -46,6 +47,7 @@ function CustomDrawerContent(props) {
 
 const DrawerNavigation = () => {
 
+  const navigation = useNavigation();
   const Drawer = createDrawerNavigator();
 
   return (
@@ -55,9 +57,12 @@ const DrawerNavigation = () => {
       <Drawer.Screen name="Autorizaciones" component={UserAuthorizationsScreen}
         options={{
           headerRight: () => (
-            <TouchableOpacity style={{ marginRight: getWP(10),marginTop:getWP(2) }}>
-            <AddAuthorization style={{ color: 'black', width: 20, height: 20 }} />
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{ marginRight: getWP(10), marginTop: getWP(2) }}
+              onPress={() => navigation.navigate('Nueva Autorizacion')}
+            >
+              <AddAuthorization style={{ color: 'black', width: 20, height: 20 }} />
+            </TouchableOpacity>
           ),
           headerStyle: {
             backgroundColor: '#fff', // Puedes cambiar el color de fondo del header

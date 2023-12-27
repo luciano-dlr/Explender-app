@@ -7,14 +7,14 @@ const usePostAuthorizations = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const authorizationsService = new AuthorizationsService();
+    const getAuthorizationList = new AuthorizationsService();
 
     const post = async (data, token) => {
 
         try {
 
             setIsLoading(true)
-            const response = await authorizationsService.postAuthorization(data, token);
+            const response = await getAuthorizationList.getAuthorizationList(data, token);
             setDataAuthorizations(response)
 
         } catch (err) {
