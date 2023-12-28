@@ -14,8 +14,11 @@ const usePostAuthorizations = () => {
         try {
 
             setIsLoading(true)
+            // console.log('entro el servicio')
             const response = await getAuthorizationList.getAuthorizationList(data, token);
             setDataAuthorizations(response)
+            // console.log('soy response',response)
+
 
         } catch (err) {
             setError(error);

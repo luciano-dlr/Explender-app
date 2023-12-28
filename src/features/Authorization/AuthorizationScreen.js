@@ -7,10 +7,8 @@ import PencilIcon from '../../../assets/PencilIcon.svg'
 
 const AuthorizationScreen = () => {
 
-  const { handlePressEditAuthorization, sortedDias } = useAuthorizationsController();
+  const { handlePressEditAuthorization, selectedUserAuthorization,memorizedAuthorization } = useAuthorizationsController();
 
-  const route = useRoute();
-  const { authorization } = route.params;
 
   // console.log(JSON.stringify(authorization,null,4))
 
@@ -26,19 +24,19 @@ const AuthorizationScreen = () => {
           <View style={styles.body}>
             <View style={styles.row}>
               <Text style={styles.label}>Tipo de autorización: </Text>
-              <Text style={styles.value}>{authorization.AUTORIZACIONTIPO}</Text>
+              <Text style={styles.value}>{memorizedAuthorization.AUTORIZACIONTIPO}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Autorizado por: </Text>
-              <Text style={styles.value}>{authorization.USUAUTORIZO}</Text>
+              <Text style={styles.value}>{memorizedAuthorization.USUAUTORIZO}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Destino: </Text>
-              <Text style={styles.value}>{authorization.DESTINO}</Text>
+              <Text style={styles.value}>{memorizedAuthorization.DESTINO}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.label}>Manzana: </Text>
-              <Text style={styles.value}>{authorization.MANZANA}</Text>
+              <Text style={styles.value}>{memorizedAuthorization.MANZANA}</Text>
             </View>
           </View>
         </View>
@@ -46,7 +44,7 @@ const AuthorizationScreen = () => {
           <View style={styles.titleDays}>
             <Text style={styles.text}>Días autorizados</Text>
           </View>
-          {sortedDias?.map((dia, index) => (
+          {memorizedAuthorization?.DIAS.map((dia, index) => (
             <View key={index} style={styles.day}>
               <Text style={styles.dayLabel}>{dia.DESCRIPDIA}</Text>
               <Text style={styles.dayValue}>{dia.DESDEHORA} - {dia.HASTAHORA}</Text>
@@ -54,7 +52,7 @@ const AuthorizationScreen = () => {
           ))}
         </View>
         <View style={styles.floatingButtonContainer}>
-          <TouchableOpacity onPress={() => handlePressEditAuthorization(authorization)} style={styles.floatingButton}>
+          <TouchableOpacity onPress={() => handlePressEditAuthorization(memorizedAuthorization)} style={styles.floatingButton}>
             <PencilIcon color={'black'} />
           </TouchableOpacity>
         </View>

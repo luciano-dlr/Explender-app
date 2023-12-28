@@ -8,79 +8,44 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 const EditAuthorizationScreen = () => {
 
-  const { authorizationEdit, handleEditPostAuthorization, handleUseEditAuthorization,authorization } = useEditAuthorizationController();
-  
-  // Log the newAuthorization
-  // console.log('New Authorization:', authorizationEdit);
-
-  
-  const [editedDesdeHora, setEditedDesdeHora] = useState('');
-  const [editedHastaHora, setEditedHastaHora] = useState('');
-
-  const handleEditTimes = (index) => {
-    const updatedAuthorization = { ...authorizationEdit };
-    const editedDay = updatedAuthorization.DIAS[index];
-
-    // Update the hours directly
-    editedDay.DESDEHORA = editedDesdeHora;
-    editedDay.HASTAHORA = editedHastaHora;
-
-    // Update the state
-    handleUseEditAuthorization('DIAS', updatedAuthorization.DIAS);
-  };
+  const {  selectedUserAuthorization, handlePressSaveAuthorization, handleChangeDays, days } = useEditAuthorizationController();
 
   return (
 
     <ScrollView style={styles.scrollView}>
-      <View style={styles.container}>
+      {/* <View style={styles.container}> */}
         <View style={styles.header}>
           <View style={styles.body}>
             <View style={styles.row}>
-              <TouchableOpacity onPress={handleEditPostAuthorization}>
+              <TouchableOpacity>
                 <Text style={styles.label}>Tipo de autorización: </Text>
               </TouchableOpacity>
-              <Text style={styles.value}>{authorization?.AUTORIZACIONTIPO}</Text>
+              <Text style={styles.value}>{selectedUserAuthorization?.AUTORIZACIONTIPO}</Text>
             </View>
 
             <View style={styles.row}>
               <Text style={styles.label}>Autorizado por: </Text>
-              <Text style={styles.value}>{authorization?.USUAUTORIZO}</Text>
+              <Text style={styles.value}>{selectedUserAuthorization?.USUAUTORIZO}</Text>
             </View>
 
             <View style={styles.row}>
               <Text style={styles.label}>Destino: </Text>
-              <Text style={styles.value}>{authorization?.DESTINO}</Text>
+              <Text style={styles.value}>{selectedUserAuthorization?.DESTINO}</Text>
             </View>
 
             <View style={styles.row}>
               <Text style={styles.label}>Manzana: </Text>
-              <Text style={styles.value}>{authorization?.MANZANA}</Text>
+              <Text style={styles.value}>{selectedUserAuthorization?.MANZANA}</Text>
             </View>
           </View>
         </View>
 
-        {/* <View style={styles.day}>
-
-          <View style={styles.titleDays}>
-
-            <Text style={styles.text}>Días autorizados</Text>
-
-          </View>
-
-          {authorization.DIAS?.map((dia, index) => (
-
-            <View key={index} style={styles.day}>
-              <Text style={styles.dayLabel}>{dia.DESCRIPDIA}</Text>
-              <Text style={styles.dayValue}>{dia.DESDEHORA} - {dia.HASTAHORA}</Text>
-            </View>
-
-          ))}
-        </View> */}
         <View style={styles.day}>
           <View style={styles.titleDays}>
             <Text style={styles.text}>Días autorizados</Text>
           </View>
-          {authorizationEdit.DIAS?.map((dia, index) => (
+
+          {days.map((dia, index) => (
             <View key={index} style={styles.day}>
               <Text style={styles.dayLabel}>{dia.DESCRIPDIA}</Text>
               <Text style={styles.dayValue}>
@@ -89,27 +54,27 @@ const EditAuthorizationScreen = () => {
               {/* TextInput for editing */}
               <TextInput
                 placeholder="Desde Hora"
-                value={editedDesdeHora}
-                onChangeText={(text) => setEditedDesdeHora(text)}
+                value={dia.DESDEHORA}
+                onChangeText={(text) => handleChangeDays(dia.DIA,text,'from')}
               />
               <TextInput
                 placeholder="Hasta Hora"
-                value={editedHastaHora}
-                onChangeText={(text) => setEditedHastaHora(text)}
+                value={dia.HASTAHORA}
+                onChangeText={(text) => handleChangeDays(dia.DIA,text,'to')}
               />
-              {/* Button to save changes */}
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => handleEditTimes(index)}
-              >
-                <Text style={styles.buttonText}>Guardar Cambios</Text>
-              </TouchableOpacity>
+             
             </View>
           ))}
         </View>
-      
-      </View>
-      
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlePressSaveAuthorization}
+        >
+          <Text style={styles.buttonText}>Guardar Cambios</Text>
+        </TouchableOpacity>
+      {/* </View> */}
+
     </ScrollView>
   )
 }

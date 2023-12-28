@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const UserAuthorizationsScreen = () => {
 
-  const { userInfo, userAuthorizationsList, handlePressAuthorization } = useUserAuthorizationsController();
+  const { userInfo, userAuthorizationsList, handlePressAuthorization, memorizedUserAuthorizationsList } = useUserAuthorizationsController();
 
   // console.log(JSON.stringify(userAuthorizationsList,null,4))
 
@@ -13,7 +13,7 @@ const UserAuthorizationsScreen = () => {
 
     <ScrollView style={styles.container}>
 
-      {!userAuthorizationsList ? <ActivityIndicator /> : userAuthorizationsList?.AUTORIZACIONES.map((authorization, index) => (
+      {!memorizedUserAuthorizationsList ? <ActivityIndicator /> : memorizedUserAuthorizationsList.AUTORIZACIONES.map((authorization, index) => (
 
         <TouchableOpacity
           key={index}

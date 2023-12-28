@@ -2,17 +2,14 @@ import { StyleSheet } from "react-native";
 import { getHP, getWP } from "../../utils/dimensions";
 
 export const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    height: getHP(90), // Altura mínima del contenedor
-    backgroundColor: "#ffffff",
+  scrollView: {
+    flex:1,
+    backgroundColor: "#fff",
   },
+ 
   header: {
     padding: getHP(1),
     backgroundColor: "#880e4f",
-  },
-  scrollView: {
-    backgroundColor: "#ffffff",
   },
   title: {
     fontSize: 20,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useGetUserData from "../../hooks/user/useGetUserData";
 import { useUserStore } from "../../zustand/useUserStore";
 import { useAuthStore } from "../../zustand/useAuthStore";
@@ -12,15 +12,20 @@ export const useUserAuthorizationsController = () => {
     const setUserInfo = useUserStore((bolsa) => bolsa.setUserInfo);
     const userInfo = useUserStore((bolsa) => bolsa.userInfo);
 
-    const { userAuthorizationsList, setUserAuthorizationsList } = useAuthorizationsStore();
+    const { userAuthorizationsList, setUserAuthorizationsList,setSelectedUserAuthorization, selectedUserAuthorization} = useAuthorizationsStore();
+
+    const memorizedUserAuthorizationsList = useMemo(() => userAuthorizationsList, [userAuthorizationsList])
+
     const { get, data } = useGetUserData()
     const { post, dataAuthorizations } = usePostAuthorizations()
+
     const { navigate } = useNavigation();
 
     // console.log(JSON.stringify(userInfo,null,4))
 
-    const handlePressAuthorization = (nameAuthorized, authorization) => {
-        navigate('Authorization', { name: nameAuthorized, authorization });
+    const handlePressAuthorization = (nameAuthorized,authorization) => {
+        setSelectedUserAuthorization(authorization)        
+        navigate('Authorization', { name: nameAuthorized });
     };
 
     const handleUserInfo = () => {
@@ -61,7 +66,10 @@ export const useUserAuthorizationsController = () => {
 
     useEffect(() => {
 
-        handleUserInfo()
+        if(!userInfo){
+
+            handleUserInfo()
+        }
 
     }, [])
 
@@ -77,7 +85,9 @@ export const useUserAuthorizationsController = () => {
 
         if (userInfo) {
             handleAuthorizationsList()
+            // console.log('hizo un getAuthorization')
         }
+
 
     }, [userInfo])
 
@@ -90,12 +100,21 @@ export const useUserAuthorizationsController = () => {
 
     }, [dataAuthorizations])
 
+     //  cambios en selectedUserAuthorization despues de la noche con choski mini peka
+  useEffect(() => {
+    if (selectedUserAuthorization) {
+      // obtener autorizaciones actualizadas
+      handleAuthorizationsList();
+    }
+  }, [selectedUserAuthorization]);
+
     return {
         get,
         handleUserInfo,
         userInfo,
         handleAuthorizationsList,
         userAuthorizationsList,
-        handlePressAuthorization
+        handlePressAuthorization,
+        memorizedUserAuthorizationsList
     }
 }
