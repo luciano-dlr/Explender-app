@@ -54,10 +54,12 @@ const EditAuthorizationScreen = () => {
               {/* TextInput for editing */}
               <TextInput
                 placeholder="Desde Hora"
+                inputMode='numeric'
                 value={dia.DESDEHORA}
                 onChangeText={(text) => handleChangeDays(dia.DIA,text,'from')}
               />
               <TextInput
+                inputMode='numeric'
                 placeholder="Hasta Hora"
                 value={dia.HASTAHORA}
                 onChangeText={(text) => handleChangeDays(dia.DIA,text,'to')}

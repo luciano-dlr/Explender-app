@@ -10,7 +10,7 @@ export const useAuthorizationsController = () => {
 
   const memorizedAuthorization = useMemo(() => {
 
-    console.log('soy selectedUserAuthorization',selectedUserAuthorization);
+    // console.log('soy selectedUserAuthorization',selectedUserAuthorization);
 
     return selectedUserAuthorization
 

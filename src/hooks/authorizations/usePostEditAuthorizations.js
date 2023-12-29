@@ -14,14 +14,17 @@ const usePostEditAuthorizations = () => {
         try {
 
             setIsLoading(true)
+
             const response = await authorizationsEditService.postEditAuthorization(data, token)
             setData(response)
 
-            // console.log(response)
+            console.log('efectivamente funca',response)
             
 
         } catch (err) {
-            setError(error);
+            setError(err);
+            console.log('error',err)
+
         }
         finally {
             setIsLoading(false)

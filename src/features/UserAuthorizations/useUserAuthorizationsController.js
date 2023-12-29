@@ -85,7 +85,7 @@ export const useUserAuthorizationsController = () => {
 
         if (userInfo) {
             handleAuthorizationsList()
-            // console.log('hizo un getAuthorization')
+         
         }
 
 
@@ -94,7 +94,6 @@ export const useUserAuthorizationsController = () => {
     useEffect(() => {
 
         if (dataAuthorizations) {
-            //guardando en la bolsa
             setUserAuthorizationsList(dataAuthorizations)
         }
 
@@ -103,11 +102,13 @@ export const useUserAuthorizationsController = () => {
      //  cambios en selectedUserAuthorization despues de la noche con choski mini peka
   useEffect(() => {
     if (selectedUserAuthorization) {
-      // obtener autorizaciones actualizadas
       handleAuthorizationsList();
+      console.log(JSON.stringify(selectedUserAuthorization,null,4));
     }
   }, [selectedUserAuthorization]);
 
+
+ 
     return {
         get,
         handleUserInfo,
