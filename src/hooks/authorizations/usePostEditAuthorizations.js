@@ -18,12 +18,12 @@ const usePostEditAuthorizations = () => {
             const response = await authorizationsEditService.postEditAuthorization(data, token)
             setData(response)
 
-            console.log('efectivamente funca',response)
+            // console.log('efectivamente funca',response)
             
 
         } catch (err) {
             setError(err);
-            console.log('error',err)
+            // console.log('error',err)
 
         }
         finally {

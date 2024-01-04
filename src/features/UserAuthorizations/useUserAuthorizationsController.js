@@ -103,7 +103,7 @@ export const useUserAuthorizationsController = () => {
   useEffect(() => {
     if (selectedUserAuthorization) {
       handleAuthorizationsList();
-      console.log(JSON.stringify(selectedUserAuthorization,null,4));
+    //   console.log(JSON.stringify(selectedUserAuthorization,null,4));
     }
   }, [selectedUserAuthorization]);
 
