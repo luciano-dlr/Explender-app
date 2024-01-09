@@ -22,6 +22,7 @@ function CustomDrawerContent(props) {
     setUserInfo(null)
   }
 
+  //Afuera
 
   return (
     <DrawerContentScrollView {...props}>
