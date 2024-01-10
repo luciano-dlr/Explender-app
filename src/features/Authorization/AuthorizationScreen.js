@@ -4,6 +4,8 @@ import { styles } from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useAuthorizationsController } from './useAuthorizationsController';
 import PencilIcon from '../../../assets/PencilIcon.svg'
+import { useEffect } from 'react';
+import { useAuthStore } from '../../zustand/useAuthStore';
 
 const AuthorizationScreen = () => {
 
@@ -14,6 +16,16 @@ const AuthorizationScreen = () => {
 
   //TO DO
   //restyle component 
+
+  const {setUserData} = useAuthStore()
+
+  //Logout Caserin
+  // useEffect(() => {
+    
+  //   setUserData(null)
+   
+  // }, [])
+  
   return (
 
     <ScrollView style={styles.scrollView}>
