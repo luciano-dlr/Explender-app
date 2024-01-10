@@ -15,6 +15,7 @@ import Menu from '../../assets/Menu.svg'
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigation = () => {
+  
   const navigation = useNavigation();
 
   const routeIcons = {
@@ -58,7 +59,6 @@ const BottomTabNavigation = () => {
               onPress={() => navigation.navigate('Nueva Autorizacion')}
             >
               <View >
-                {/* Aquí, se usa el mismo componente del objeto routeIcons */}
                 <AddAuthorization style={{ color: 'black', width: 20, height: 20 }} />
               </View>
             </TouchableOpacity>
@@ -74,7 +74,6 @@ const BottomTabNavigation = () => {
       <Tab.Screen name="Infracciones" component={InfractionsScreen} />
 
       <Tab.Screen name="Menu" component={MenuScreen} />
-
 
     </Tab.Navigator>
   );
