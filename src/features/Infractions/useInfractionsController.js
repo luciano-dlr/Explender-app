@@ -1,5 +1,5 @@
 import usePostInfractionsList from "../../hooks/infractions/usePostInfractionsList";
-import { useAuthStore } from "../../zustand/useAuthStore";
+
 import { useUserStore } from "../../zustand/useUserStore";
 
 
@@ -14,13 +14,14 @@ export const useInfractionsController = () => {
 
 
     //To Do 
-
     //Hace boton logout boludo 
+    // console.log(userInfo.USUARIO[0].USUNOMBRE);
 
+
+    //Backend Dame el base64 directamente gg
 
     const handleInfractionList = () => {
-        console.log('soy controller');
-
+        
         const data = {
             Fecha: "2023-10-12 00:00",
             Responsable: userInfo.USUARIO[0].USUNOMBRE,
@@ -30,6 +31,8 @@ export const useInfractionsController = () => {
         post(data)
 
     };
+
+    
 
   return {
 

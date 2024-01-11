@@ -11,21 +11,20 @@ const usePostInfractionsList = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    
     const infractions = new infractionsService()
 
-    const {token} = useAuthStore()
+    const {userData} = useAuthStore()
+    const token = userData.token
     
     const post = async (data) => {
-        console.log(token)
-
+       
         try {
 
             setIsLoading(true)
-            console.log('soy el hook');
+
             const response = await infractions.postInfraction(token,data)
             
-            console.log('soy response',response);
+            console.log('soy response',JSON.stringify(response,null,4));
             setData(response)
 
         } catch (error) {
