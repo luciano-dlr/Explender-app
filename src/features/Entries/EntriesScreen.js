@@ -24,7 +24,7 @@ const EntriesScreen = () => {
           <View style={styles.modalContent}>
 
 
-            <Text>Alguien en la entrada del barrio pa</Text>
+            <Text>Alguien en la entrada del barrio</Text>
 
             <TouchableOpacity onPress={closeModal} style={styles.touchable}>
 

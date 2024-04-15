@@ -20,11 +20,11 @@ const AuthorizationScreen = () => {
   const {setUserData} = useAuthStore()
 
   //Logout Caserin
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   setUserData(null)
+    console.log('soy la auth');
    
-  // }, [])
+  }, [])
   
   return (
 
